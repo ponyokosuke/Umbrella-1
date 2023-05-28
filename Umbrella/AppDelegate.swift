@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         return true
     }
+    let config = Realm.Configuration(
+        schemaVersion: 1,
+        migrationBlock: nil,
+        deleteRealmIfMigrationNeeded: true)
+    func Realm.Configuration.defaultConfiguration = config
+    
+    return true
+    
 
     // MARK: UISceneSession Lifecycle
 

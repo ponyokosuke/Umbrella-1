@@ -13,6 +13,13 @@
 		4534E7F12A19F6F200EE8CC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4534E7EF2A19F6F200EE8CC9 /* Main.storyboard */; };
 		4534E7F32A19F6F300EE8CC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4534E7F22A19F6F300EE8CC9 /* Assets.xcassets */; };
 		4534E7F62A19F6F300EE8CC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4534E7F42A19F6F300EE8CC9 /* LaunchScreen.storyboard */; };
+		4534E7FE2A1A058200EE8CC9 /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E7FD2A1A058200EE8CC9 /* AddressViewController.swift */; };
+		4534E8002A1A063400EE8CC9 /* SunnyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E7FF2A1A063400EE8CC9 /* SunnyViewController.swift */; };
+		4534E8042A1A06B600EE8CC9 /* RainyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E8032A1A06B600EE8CC9 /* RainyViewController.swift */; };
+		4534E8062A1A06DA00EE8CC9 /* CloudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E8052A1A06DA00EE8CC9 /* CloudyViewController.swift */; };
+		4534E8082A1A070100EE8CC9 /* WeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E8072A1A070100EE8CC9 /* WeatherForecastViewController.swift */; };
+		4534E80B2A1A118000EE8CC9 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 4534E80A2A1A118000EE8CC9 /* Realm */; };
+		4534E80D2A1A118000EE8CC9 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4534E80C2A1A118000EE8CC9 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +31,11 @@
 		4534E7F22A19F6F300EE8CC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4534E7F52A19F6F300EE8CC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4534E7F72A19F6F300EE8CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4534E7FD2A1A058200EE8CC9 /* AddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewController.swift; sourceTree = "<group>"; };
+		4534E7FF2A1A063400EE8CC9 /* SunnyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunnyViewController.swift; sourceTree = "<group>"; };
+		4534E8032A1A06B600EE8CC9 /* RainyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainyViewController.swift; sourceTree = "<group>"; };
+		4534E8052A1A06DA00EE8CC9 /* CloudyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudyViewController.swift; sourceTree = "<group>"; };
+		4534E8072A1A070100EE8CC9 /* WeatherForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +43,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4534E80D2A1A118000EE8CC9 /* RealmSwift in Frameworks */,
+				4534E80B2A1A118000EE8CC9 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +77,11 @@
 				4534E7F22A19F6F300EE8CC9 /* Assets.xcassets */,
 				4534E7F42A19F6F300EE8CC9 /* LaunchScreen.storyboard */,
 				4534E7F72A19F6F300EE8CC9 /* Info.plist */,
+				4534E7FD2A1A058200EE8CC9 /* AddressViewController.swift */,
+				4534E7FF2A1A063400EE8CC9 /* SunnyViewController.swift */,
+				4534E8052A1A06DA00EE8CC9 /* CloudyViewController.swift */,
+				4534E8032A1A06B600EE8CC9 /* RainyViewController.swift */,
+				4534E8072A1A070100EE8CC9 /* WeatherForecastViewController.swift */,
 			);
 			path = Umbrella;
 			sourceTree = "<group>";
@@ -83,6 +102,10 @@
 			dependencies = (
 			);
 			name = Umbrella;
+			packageProductDependencies = (
+				4534E80A2A1A118000EE8CC9 /* Realm */,
+				4534E80C2A1A118000EE8CC9 /* RealmSwift */,
+			);
 			productName = Umbrella;
 			productReference = 4534E7E62A19F6F200EE8CC9 /* Umbrella.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +134,9 @@
 				Base,
 			);
 			mainGroup = 4534E7DD2A19F6F200EE8CC9;
+			packageReferences = (
+				4534E8092A1A118000EE8CC9 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 4534E7E72A19F6F200EE8CC9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -139,8 +165,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4534E7EE2A19F6F200EE8CC9 /* ViewController.swift in Sources */,
+				4534E8002A1A063400EE8CC9 /* SunnyViewController.swift in Sources */,
+				4534E8042A1A06B600EE8CC9 /* RainyViewController.swift in Sources */,
+				4534E8062A1A06DA00EE8CC9 /* CloudyViewController.swift in Sources */,
+				4534E8082A1A070100EE8CC9 /* WeatherForecastViewController.swift in Sources */,
 				4534E7EA2A19F6F200EE8CC9 /* AppDelegate.swift in Sources */,
 				4534E7EC2A19F6F200EE8CC9 /* SceneDelegate.swift in Sources */,
+				4534E7FE2A1A058200EE8CC9 /* AddressViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +387,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4534E8092A1A118000EE8CC9 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4534E80A2A1A118000EE8CC9 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4534E8092A1A118000EE8CC9 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		4534E80C2A1A118000EE8CC9 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4534E8092A1A118000EE8CC9 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4534E7DE2A19F6F200EE8CC9 /* Project object */;
 }
