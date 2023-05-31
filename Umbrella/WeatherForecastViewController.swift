@@ -8,6 +8,8 @@
 import UIKit
 
 class WeatherForecastViewController: UIViewController {
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,6 +17,11 @@ class WeatherForecastViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        return 7
+
+      }
 
     /*
     // MARK: - Navigation

@@ -15,8 +15,6 @@
 		4534E7F62A19F6F300EE8CC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4534E7F42A19F6F300EE8CC9 /* LaunchScreen.storyboard */; };
 		4534E7FE2A1A058200EE8CC9 /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E7FD2A1A058200EE8CC9 /* AddressViewController.swift */; };
 		4534E8002A1A063400EE8CC9 /* SunnyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E7FF2A1A063400EE8CC9 /* SunnyViewController.swift */; };
-		4534E8042A1A06B600EE8CC9 /* RainyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E8032A1A06B600EE8CC9 /* RainyViewController.swift */; };
-		4534E8062A1A06DA00EE8CC9 /* CloudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E8052A1A06DA00EE8CC9 /* CloudyViewController.swift */; };
 		4534E8082A1A070100EE8CC9 /* WeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E8072A1A070100EE8CC9 /* WeatherForecastViewController.swift */; };
 		4534E80B2A1A118000EE8CC9 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 4534E80A2A1A118000EE8CC9 /* Realm */; };
 		4534E80D2A1A118000EE8CC9 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4534E80C2A1A118000EE8CC9 /* RealmSwift */; };
@@ -33,8 +31,6 @@
 		4534E7F72A19F6F300EE8CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4534E7FD2A1A058200EE8CC9 /* AddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewController.swift; sourceTree = "<group>"; };
 		4534E7FF2A1A063400EE8CC9 /* SunnyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunnyViewController.swift; sourceTree = "<group>"; };
-		4534E8032A1A06B600EE8CC9 /* RainyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainyViewController.swift; sourceTree = "<group>"; };
-		4534E8052A1A06DA00EE8CC9 /* CloudyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudyViewController.swift; sourceTree = "<group>"; };
 		4534E8072A1A070100EE8CC9 /* WeatherForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,8 +75,6 @@
 				4534E7F72A19F6F300EE8CC9 /* Info.plist */,
 				4534E7FD2A1A058200EE8CC9 /* AddressViewController.swift */,
 				4534E7FF2A1A063400EE8CC9 /* SunnyViewController.swift */,
-				4534E8052A1A06DA00EE8CC9 /* CloudyViewController.swift */,
-				4534E8032A1A06B600EE8CC9 /* RainyViewController.swift */,
 				4534E8072A1A070100EE8CC9 /* WeatherForecastViewController.swift */,
 			);
 			path = Umbrella;
@@ -166,8 +160,6 @@
 			files = (
 				4534E7EE2A19F6F200EE8CC9 /* ViewController.swift in Sources */,
 				4534E8002A1A063400EE8CC9 /* SunnyViewController.swift in Sources */,
-				4534E8042A1A06B600EE8CC9 /* RainyViewController.swift in Sources */,
-				4534E8062A1A06DA00EE8CC9 /* CloudyViewController.swift in Sources */,
 				4534E8082A1A070100EE8CC9 /* WeatherForecastViewController.swift in Sources */,
 				4534E7EA2A19F6F200EE8CC9 /* AppDelegate.swift in Sources */,
 				4534E7EC2A19F6F200EE8CC9 /* SceneDelegate.swift in Sources */,
