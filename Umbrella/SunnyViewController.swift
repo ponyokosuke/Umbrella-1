@@ -6,15 +6,11 @@ class SunnyViewController: UIViewController {
     
     @IBOutlet weak var dateLabel: UILabel!
     
-    
     @IBOutlet weak var temperatureLabel: UILabel!
-    
     
     @IBOutlet weak var locationLabel: UILabel!
     
-    
     @IBOutlet weak var weatherLabel: UILabel!
-    
     
     @IBOutlet weak var rainypercentLabel: UILabel!
     
@@ -78,61 +74,12 @@ class SunnyViewController: UIViewController {
             }
         }
     
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        printCurrentDate()
-//        fetchWeatherData1(latitude: 35.6812, longitude: 139.7671, completion: { result in
-//            switch result{
-//            case .success(let temp):
-//                DispatchQueue.main.async {
-//                    self.temperatureLabel.text = temp
-//                }
-//                print(temp)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        })
-//
-//        fetchWeatherData2(latitude: 35.6812, longitude: 139.7671, completion: { result in
-//            switch result{
-//            case .success(let description):
-//                DispatchQueue.main.async {
-//                    self.weatherLabel.text = description
-//                }
-//                print(description)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        })
-//
-//        fetchRainProbability(latitude: 35.6812, longitude: 139.7671) { result in
-//            switch result {
-//            case .success(let rainPercentage):
-//                DispatchQueue.main.async {
-//                    let rainPercentage = String(rainPercentage)
-//                    self.rainypercentLabel.text = rainPercentage
-//                }
-//                print("Rain Probability: \(rainPercentage)%")
-//            case .failure(let error):
-//                print("Failed to fetch rain probability: \(error.localizedDescription)")
-//            }
-//        }
-//
-//        fetchCityFromCoordinates(latitude: 35.6812, longitude: 139.7671) { result in
-//            switch result {
-//            case .success(let city):
-//                DispatchQueue.main.async {
-//                    self.locationLabel.text = city
-//                }
-//                print("City: \(city)")
-//            case .failure(let error):
-//                print("Failed to fetch city: \(error.localizedDescription)")
-//            }
-//        }
-//
-//
+//    func updateUserDefaults(latitude: Double, longitude: Double) {
+//        let defaults = UserDefaults.standard
+//        defaults.setValue(latitude, forKey: "latitude")
+//        defaults.setValue(longitude, forKey: "longitude")
 //    }
+
     
     func fetchWeatherData1(latitude: Double, longitude: Double, completion: @escaping (Result<String, Error>) -> Void) {
         let apiKey = "fca09c676c26d6e1d67d6ac5fe12168d"
