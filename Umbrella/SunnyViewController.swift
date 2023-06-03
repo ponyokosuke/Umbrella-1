@@ -23,20 +23,95 @@ class SunnyViewController: UIViewController {
         super.viewDidLoad()
         
         printCurrentDate()
-        fetchWeatherData(latitude: 35.6812, longitude: 139.7671, completion: { result in
-                    switch result{
-                    case .success(let temp):
-                        DispatchQueue.main.async {
-                            self.temperatureLabel.text = temp
-                        }
-                        print(temp)
-                    case .failure(let error):
-                        print(error)
-                    }
-                })
+        fetchWeatherData1(latitude: 35.6812, longitude: 139.7671, completion: { result in
+            switch result{
+            case .success(let temp):
+                DispatchQueue.main.async {
+                    self.temperatureLabel.text = temp
+                }
+                print(temp)
+            case .failure(let error):
+                print(error)
+            }
+        })
+        
+        fetchWeatherData2(latitude: 35.6812, longitude: 139.7671, completion: { result in
+            switch result{
+            case .success(let description):
+                DispatchQueue.main.async {
+                    self.weatherLabel.text = description
+                }
+                print(description)
+            case .failure(let error):
+                print(error)
+            }
+        })
+        
+        fetchRainProbability(latitude: 35.6812, longitude: 139.7671) { result in
+            switch result {
+            case .success(let rainPercentage):
+                DispatchQueue.main.async {
+                    let rainPercentage = String(rainPercentage)
+                    self.rainypercentLabel.text = rainPercentage
+                }
+                print("Rain Probability: \(rainPercentage)%")
+            case .failure(let error):
+                print("Failed to fetch rain probability: \(error.localizedDescription)")
+            }
+        }
+
+        
+//        fetchRainProbability(latitude: 35.6812, longitude: 139.7671) { result in
+//            switch result {
+//            case .success(let rainPercentage):
+//                DispatchQueue.main.async {
+//                    self.rainypercentLabel.text = "\(rainPercentage)%"
+//                }
+//                print("Rain Probability: \(rainPercentage)%")
+//            case .failure(let error):
+//                print("Failed to fetch rain probability: \(error.localizedDescription)")
+//            }
+//        }
+        
     }
     
-    func fetchWeatherData(latitude: Double, longitude: Double, completion: @escaping (Result<String, Error>) -> Void) {
+    func fetchWeatherData1(latitude: Double, longitude: Double, completion: @escaping (Result<String, Error>) -> Void) {
+        let apiKey = "fca09c676c26d6e1d67d6ac5fe12168d"
+        let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)")!
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let data = data else {
+                let error = NSError(domain: "WeatherAPIError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid data received"])
+                completion(.failure(error))
+                return
+            }
+            
+                        do {
+                            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                                if let main = json["main"] as? [String: Any],
+                                   let temperature = main["temp"] as? Double {
+                                    completion(.success(String(temperature-273)))
+                                } else {
+                                   let error = NSError(domain: "WeatherAPIError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid data format"])
+                                   completion(.failure(error))
+                                }
+                             }
+                          } catch {
+                              completion(.failure(error))
+                          }
+            
+            }
+        
+        task.resume()
+    }
+    
+    
+    func fetchWeatherData2(latitude: Double, longitude: Double, completion: @escaping (Result<String, Error>) -> Void) {
         let apiKey = "fca09c676c26d6e1d67d6ac5fe12168d"
         let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)")!
         
@@ -54,20 +129,52 @@ class SunnyViewController: UIViewController {
             
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                    print(json)
-                    if let main = json["main"] as? [String: Any],
-                       let temperature = main["temp"] as? Double,
-                       let weatherArray = json["weather"] as? [[String: Any]],
+                    if let weatherArray = json["weather"] as? [[String: Any]],
                        let weather = weatherArray.first,
-                       let description = weather["description"] as? String,
-                       let rain = json["rain"] as? [String: Any],
-                       let rainProbability = rain["1h"] as? Double {
-                        let result = "Temperature: \(temperature) K\nWeather: \(description)\nRain Probability: \(rainProbability)%"
-                        completion(.success(result))
+                       let description = weather["description"] as? String  {
+                        completion(.success(description))
                     } else {
-                        let error = NSError(domain: "WeatherAPIError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid data format"])
-                        completion(.failure(error))
+                       let error = NSError(domain: "WeatherAPIError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid data format"])
+                       completion(.failure(error))
                     }
+                 }
+              } catch {
+                  completion(.failure(error))
+              }
+            
+            }
+        
+        task.resume()
+    }
+
+    
+    func fetchRainProbability(latitude: Double, longitude: Double, completion: @escaping (Result<Int, Error>) -> Void) {
+        let apiKey = "fca09c676c26d6e1d67d6ac5fe12168d"
+        let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)")!
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let data = data else {
+                let error = NSError(domain: "WeatherAPIError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid data received"])
+                completion(.failure(error))
+                return
+            }
+            
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                   let weatherArray = json["weather"] as? [[String: Any]],
+                   let weather = weatherArray.first,
+                   let weatherDescription = weather["description"] as? String {
+                    // 降水確率の推測ロジックを実装する（例: "rain" のキーワードが含まれていれば降水確率を高めに設定する）
+                    let rainProbability = weatherDescription.contains("rain") ? 70 : 20
+                    completion(.success(rainProbability))
+                } else {
+                    let error = NSError(domain: "WeatherAPIError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid data format"])
+                    completion(.failure(error))
                 }
             } catch {
                 completion(.failure(error))
@@ -76,6 +183,10 @@ class SunnyViewController: UIViewController {
         
         task.resume()
     }
+
+
+    
+    
     
     // 以下はUserDefaultsに保存されたlatitudeとlongitudeの値を読み取り、天気情報を取得する例です。
     
