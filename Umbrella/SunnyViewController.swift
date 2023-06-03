@@ -18,10 +18,24 @@ class SunnyViewController: UIViewController {
     
     @IBOutlet weak var RainyPercent: UILabel!
     
+    
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        
+        // タイマーを使って定期的に日付を表示する
+        let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            
+            printCurrentDate()
+        }
+
+        // メインループを開始してタイマーを実行する
+        RunLoop.main.add(timer, forMode: .common)
+        
+        // メインスレッドを実行し続ける
+        RunLoop.main.run()
     }
     
     func fetchWeatherData(latitude: Double, longitude: Double, completion: @escaping (Result<String, Error>) -> Void) {
@@ -125,18 +139,8 @@ class SunnyViewController: UIViewController {
         let currentDate = Date()
         let formattedDate = formatter.string(from: currentDate)
         print("Current Date: \(formattedDate)")
+        
+        
     }
-
-    // タイマーを使って定期的に日付を表示する
-    let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-        printCurrentDate()
-    }
-
-    // メインループを開始してタイマーを実行する
-    RunLoop.main.add(timer, forMode: .common)
-
-    // メインスレッドを実行し続ける
-    RunLoop.main.run()
-
     
-}
+

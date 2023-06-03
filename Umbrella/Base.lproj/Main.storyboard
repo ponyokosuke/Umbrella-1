@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
@@ -41,7 +41,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="savebutton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cMn-WN-NC5"/>
-                                    <segue destination="kNv-Wy-d79" kind="presentation" id="jW0-Ed-W82"/>
+                                    <segue destination="jSa-d9-JFM" kind="presentation" id="jW0-Ed-W82"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="38k-O9-WRQ">
@@ -68,10 +68,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9hY-eB-07O">
+                                <rect key="frame" x="16" y="59" width="51" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrowshape.turn.up.backward.fill" catalog="system"/>
+                                <connections>
+                                    <segue destination="kNv-Wy-d79" kind="presentation" id="SxG-02-j8A"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="NdX-VP-uDk"/>
                     <connections>
                         <outlet property="postcode" destination="38k-O9-WRQ" id="Dyo-XO-ScU"/>
                         <outlet property="postcode1" destination="38k-O9-WRQ" id="sta-El-AGX"/>
@@ -81,9 +92,9 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="MyE-Xh-6nm" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="37" y="-118"/>
+            <point key="canvasLocation" x="962.59541984732823" y="-118.30985915492958"/>
         </scene>
-        <!--Sunny View Controller-->
+        <!--home-->
         <scene sceneID="ncH-HW-NxC">
             <objects>
                 <viewController id="kNv-Wy-d79" customClass="SunnyViewController" customModule="Umbrella" customModuleProvider="target" sceneMemberID="viewController">
@@ -139,10 +150,18 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.70553083609271527" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oaa-Ph-05D">
+                                <rect key="frame" x="303" y="30" width="82" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="gearshape" catalog="system"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pz2-jN-eyd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="home" selectedImage="house" catalog="system" id="VzE-kO-opv"/>
                     <connections>
                         <outlet property="Date" destination="hId-Ne-OxM" id="BdH-tH-ZTd"/>
                         <outlet property="Location" destination="9Hf-91-daN" id="NIu-qT-qg4"/>
@@ -153,14 +172,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kV2-UH-68m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="806.87022900763361" y="-117.60563380281691"/>
+            <point key="canvasLocation" x="2660.3053435114502" y="-117.60563380281691"/>
         </scene>
-        <!--View Controller-->
+        <!--list-->
         <scene sceneID="n0G-QE-E3J">
             <objects>
-                <viewController id="1kD-cg-W4F" sceneMemberID="viewController">
+                <viewController id="1kD-cg-W4F" customClass="WeatherForecastViewController" customModule="Umbrella" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Al0-VT-bvl">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="今週1週間の傘情報" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lS9-SF-sQC">
@@ -190,14 +209,40 @@
                         <viewLayoutGuide key="safeArea" id="WTl-J9-mpb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="list" selectedImage="list.bullet" catalog="system" id="kry-RY-q0i"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0T0-ew-RRW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1633" y="-118"/>
+            <point key="canvasLocation" x="3486.2595419847326" y="-118.30985915492958"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="1py-j1-iBe">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="jSa-d9-JFM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NVl-f1-QKz">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="kNv-Wy-d79" kind="relationship" relationship="viewControllers" id="uMR-On-yYC"/>
+                        <segue destination="1kD-cg-W4F" kind="relationship" relationship="viewControllers" id="QPs-xh-cEl"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N6g-QU-Tlc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1733.5877862595419" y="-117.60563380281691"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="uMR-On-yYC"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Umbrella Sunny" width="563" height="1002"/>
+        <image name="arrowshape.turn.up.backward.fill" catalog="system" width="128" height="104"/>
+        <image name="gearshape" catalog="system" width="128" height="123"/>
+        <image name="house" catalog="system" width="128" height="104"/>
+        <image name="list.bullet" catalog="system" width="128" height="87"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

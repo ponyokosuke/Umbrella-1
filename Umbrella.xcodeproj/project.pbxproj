@@ -16,8 +16,6 @@
 		4534E7FE2A1A058200EE8CC9 /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E7FD2A1A058200EE8CC9 /* AddressViewController.swift */; };
 		4534E8002A1A063400EE8CC9 /* SunnyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E7FF2A1A063400EE8CC9 /* SunnyViewController.swift */; };
 		4534E8082A1A070100EE8CC9 /* WeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E8072A1A070100EE8CC9 /* WeatherForecastViewController.swift */; };
-		4534E80B2A1A118000EE8CC9 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 4534E80A2A1A118000EE8CC9 /* Realm */; };
-		4534E80D2A1A118000EE8CC9 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4534E80C2A1A118000EE8CC9 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,8 +37,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4534E80D2A1A118000EE8CC9 /* RealmSwift in Frameworks */,
-				4534E80B2A1A118000EE8CC9 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,8 +93,6 @@
 			);
 			name = Umbrella;
 			packageProductDependencies = (
-				4534E80A2A1A118000EE8CC9 /* Realm */,
-				4534E80C2A1A118000EE8CC9 /* RealmSwift */,
 			);
 			productName = Umbrella;
 			productReference = 4534E7E62A19F6F200EE8CC9 /* Umbrella.app */;
@@ -129,7 +123,6 @@
 			);
 			mainGroup = 4534E7DD2A19F6F200EE8CC9;
 			packageReferences = (
-				4534E8092A1A118000EE8CC9 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 4534E7E72A19F6F200EE8CC9 /* Products */;
 			projectDirPath = "";
@@ -308,12 +301,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = Main.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -335,12 +329,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Umbrella/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = Main.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -379,30 +374,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		4534E8092A1A118000EE8CC9 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		4534E80A2A1A118000EE8CC9 /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4534E8092A1A118000EE8CC9 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = Realm;
-		};
-		4534E80C2A1A118000EE8CC9 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4534E8092A1A118000EE8CC9 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4534E7DE2A19F6F200EE8CC9 /* Project object */;
 }
