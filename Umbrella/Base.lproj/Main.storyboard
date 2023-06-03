@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jSa-d9-JFM">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
@@ -13,7 +13,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" userLabel="Address View Controller" customClass="AddressViewController" customModule="Umbrella" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="住所登録" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1dn-gL-moW">
@@ -41,7 +41,6 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="savebutton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cMn-WN-NC5"/>
-                                    <segue destination="jSa-d9-JFM" kind="presentation" id="jW0-Ed-W82"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="38k-O9-WRQ">
@@ -74,15 +73,13 @@
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="arrowshape.turn.up.backward.fill" catalog="system"/>
-                                <connections>
-                                    <segue destination="kNv-Wy-d79" kind="presentation" id="SxG-02-j8A"/>
-                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="NdX-VP-uDk"/>
+                    <navigationItem key="navigationItem" id="s75-cf-3eH"/>
                     <connections>
                         <outlet property="postcode" destination="38k-O9-WRQ" id="Dyo-XO-ScU"/>
                         <outlet property="postcode1" destination="38k-O9-WRQ" id="sta-El-AGX"/>
@@ -92,14 +89,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="MyE-Xh-6nm" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="962.59541984732823" y="-118.30985915492958"/>
+            <point key="canvasLocation" x="1882" y="675"/>
         </scene>
         <!--home-->
         <scene sceneID="ncH-HW-NxC">
             <objects>
                 <viewController id="kNv-Wy-d79" customClass="SunnyViewController" customModule="Umbrella" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ea9-sa-OhZ">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Umbrella Sunny" translatesAutoresizingMaskIntoConstraints="NO" id="mVj-75-Jaa">
@@ -110,8 +107,8 @@
                                 <rect key="frame" x="44" y="118" width="304" height="529"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hId-Ne-OxM">
-                                        <rect key="frame" x="107" y="50" width="91" height="54"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hId-Ne-OxM">
+                                        <rect key="frame" x="66" y="50" width="178" height="54"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                         <nil key="textColor"/>
@@ -156,6 +153,9 @@
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="gearshape" catalog="system"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="tYF-iv-iYP"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pz2-jN-eyd"/>
@@ -163,23 +163,23 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="home" selectedImage="house" catalog="system" id="VzE-kO-opv"/>
                     <connections>
-                        <outlet property="Date" destination="hId-Ne-OxM" id="BdH-tH-ZTd"/>
-                        <outlet property="Location" destination="9Hf-91-daN" id="NIu-qT-qg4"/>
-                        <outlet property="RainyPercent" destination="b91-lb-FI4" id="5st-in-Z8b"/>
-                        <outlet property="Temperature" destination="5EP-zi-KSz" id="vpz-fp-mRb"/>
-                        <outlet property="Weather" destination="3Ri-zn-9xu" id="KEL-RY-10B"/>
+                        <outlet property="dateLabel" destination="hId-Ne-OxM" id="MtF-xU-aqa"/>
+                        <outlet property="locationLabel" destination="9Hf-91-daN" id="PGz-pq-36t"/>
+                        <outlet property="rainyPercentLabel" destination="b91-lb-FI4" id="B5f-OE-unN"/>
+                        <outlet property="temperatureLabel" destination="5EP-zi-KSz" id="jex-jy-SL5"/>
+                        <outlet property="weatherLabel" destination="3Ri-zn-9xu" id="3Vj-n8-uFq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kV2-UH-68m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2660.3053435114502" y="-117.60563380281691"/>
+            <point key="canvasLocation" x="939.69465648854953" y="674.64788732394368"/>
         </scene>
         <!--list-->
         <scene sceneID="n0G-QE-E3J">
             <objects>
                 <viewController id="1kD-cg-W4F" customClass="WeatherForecastViewController" customModule="Umbrella" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Al0-VT-bvl">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="今週1週間の傘情報" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lS9-SF-sQC">
@@ -213,7 +213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0T0-ew-RRW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3486.2595419847326" y="-118.30985915492958"/>
+            <point key="canvasLocation" x="999" y="-111"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="1py-j1-iBe">
@@ -221,6 +221,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="jSa-d9-JFM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NVl-f1-QKz">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -231,12 +232,9 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N6g-QU-Tlc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1733.5877862595419" y="-117.60563380281691"/>
+            <point key="canvasLocation" x="-355" y="-110"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="uMR-On-yYC"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="Umbrella Sunny" width="563" height="1002"/>
         <image name="arrowshape.turn.up.backward.fill" catalog="system" width="128" height="104"/>

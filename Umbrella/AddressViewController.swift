@@ -36,6 +36,7 @@ class AddressViewController: UIViewController {
                     print("緯度と経度が取得できませんでした。")
                 }
             }
+        dismiss(animated: true)
     }
     
     
