@@ -25,7 +25,8 @@ class SunnyViewController: UIViewController {
                     switch result{
                     case .success(let temp):
                         DispatchQueue.main.async {
-                            self.temperatureLabel.text = temp
+                            let temperatureWithUnit = temp + "℃"
+                            self.temperatureLabel.text = temperatureWithUnit
                         }
                         print(temp)
                     case .failure(let error):
@@ -97,19 +98,20 @@ class SunnyViewController: UIViewController {
                 return
             }
             
-                        do {
-                            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                                if let main = json["main"] as? [String: Any],
-                                   let temperature = main["temp"] as? Double {
-                                    completion(.success(String(temperature-273)))
-                                } else {
-                                   let error = NSError(domain: "WeatherAPIError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid data format"])
-                                   completion(.failure(error))
-                                }
-                             }
-                          } catch {
-                              completion(.failure(error))
-                          }
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    if let main = json["main"] as? [String: Any],
+                       let temperature = main["temp"] as? Double {
+                        let roundedTemperature = Int(round(temperature - 273.15)) // 温度を四捨五入して整数に変換
+                        completion(.success(String(roundedTemperature)))
+                    } else {
+                       let error = NSError(domain: "WeatherAPIError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid data format"])
+                       completion(.failure(error))
+                    }
+                 }
+              } catch {
+                  completion(.failure(error))
+              }
             
             }
         
@@ -215,16 +217,51 @@ class SunnyViewController: UIViewController {
         }
     }
     
+    
+//    func printCurrentDate() {
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "M月d日"
+//        formatter.timeStyle = .none
+//
+//        let currentDate = Date()
+//        let formattedDate = formatter.string(from: currentDate)
+//        dateLabel.text = formattedDate
+//        print("Current Date: \(formattedDate)")
+//    }
+
+    
+//    func printCurrentDate() {
+//            let formatter = DateFormatter()
+//            formatter.dateFormat = "M月d日"
+//            formatter.timeStyle = .none
+//            formatter.locale = Locale(identifier: "ja_JP")
+//
+//            let currentDate = Date()
+//            let formattedDate = formatter.string(from: currentDate)
+//            dateLabel.text = formattedDate
+//            print("Current Date: \(formattedDate)")
+//        }
+    
+//    func printCurrentDate() {
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "M月d日"
+//        formatter.timeStyle = .none
+//        formatter.locale = Locale(identifier: "ja_JP") // 言語と地域に応じたロケールを設定
+//
+//        let currentDate = Date()
+//        let formattedDate = formatter.string(from: currentDate)
+//        dateLabel.text = formattedDate
+//        print("Current Date: \(formattedDate)")
+//    }
+
     func printCurrentDate() {
         let formatter = DateFormatter()
-        formatter.dateStyle = .short
+        formatter.dateStyle = .medium
         formatter.timeStyle = .none
-        
+
         let currentDate = Date()
         let formattedDate = formatter.string(from: currentDate)
         dateLabel.text = formattedDate
         print("Current Date: \(formattedDate)")
     }
-    
-    
 }
