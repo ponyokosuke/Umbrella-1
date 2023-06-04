@@ -4,6 +4,7 @@ import CoreLocation
 class AddressViewController: UIViewController {
     @IBOutlet weak var postcode1: UITextField!
     @IBOutlet weak var postcode2: UITextField!
+    @IBOutlet weak var backButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,10 @@ class AddressViewController: UIViewController {
         } else {
             print("保存された緯度と経度はありません。")
         }
+    }
+    
+    @IBAction func backButtonTapped(_ sender: Any){
+        self.dismiss(animated: true)
     }
 
     
