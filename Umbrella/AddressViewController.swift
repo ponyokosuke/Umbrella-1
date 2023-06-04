@@ -35,6 +35,7 @@ class AddressViewController: UIViewController {
                 print("緯度経度が見つかりませんでした。")
             }
         }
+        self.dismiss(animated: true)
     }
 
     override func viewWillAppear(_ animated: Bool) {
