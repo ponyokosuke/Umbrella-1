@@ -9,7 +9,7 @@ class AddressViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        saveButton.layer.cornerRadius = 10
+        saveButton.layer.cornerRadius = 20
         // Do any additional setup after loading the view.
     }
     

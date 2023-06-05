@@ -16,6 +16,8 @@ class SunnyViewController: UIViewController {
     
     @IBOutlet weak var whitebox: UIView!
     
+    @IBOutlet weak var backgroundImage: UIImageView!
+    
     override func viewDidLoad() {
             super.viewDidLoad()
         whitebox.layer.cornerRadius = 25
@@ -40,73 +42,49 @@ class SunnyViewController: UIViewController {
             }
             
             fetchWeatherData2(latitude: latitude, longitude: longitude) { result in
-                switch result{
+                switch result {
                 case .success(let description):
                     DispatchQueue.main.async {
-                        self.weatherLabel.text = description
+                        self.weatherLabel.text = self.getWeatherStatus(from: description)
                     }
                     print(description)
                 case .failure(let error):
                     print(error)
                 }
-    }
-    
-//    override func viewDidDisappear(_ animated: Bool) {
-//        printCurrentDate()
-//        
-//        if let latitude = UserDefaults.standard.value(forKey: "latitude") as? Double,
-//           let longitude = UserDefaults.standard.value(forKey: "longitude") as? Double {
-//            fetchWeatherData1(latitude: latitude, longitude: longitude) { result in
-//                switch result{
-//                case .success(let temp):
-//                    DispatchQueue.main.async {
-//                        let temperatureWithUnit = temp + "℃"
-//                        self.temperatureLabel.text = temperatureWithUnit
-//                    }
-//                    print(temp)
-//                case .failure(let error):
-//                    print(error)
-//                }
-//            }
-//            
-//            fetchWeatherData2(latitude: latitude, longitude: longitude) { result in
-//                switch result{
-//                case .success(let description):
-//                    DispatchQueue.main.async {
-//                        self.weatherLabel.text = description
-//                    }
-//                    print(description)
-//                case .failure(let error):
-//                    print(error)
-//                }
-//            }
+            }
             
-//            fetchRainProbability(latitude: latitude, longitude: longitude) { result in
-//                switch result {
-//                case .success(let rainPercentage):
-//                    DispatchQueue.main.async {
-//                        let rainPercentage = String(rainPercentage)
-//                        self.rainypercentLabel.text = rainPercentage
-//                    }
-//                    print("Rain Probability: \(rainPercentage)%")
-//                case .failure(let error):
-//                    print("Failed to fetch rain probability: \(error.localizedDescription)")
-//                }
-//            }
-            
-            getRainyPercentage(apiKey: "fca09c676c26d6e1d67d6ac5fe12168d", latitude: latitude, longitude: longitude) { result in
+            fetchWeatherData2(latitude: latitude, longitude: longitude) { result in
                 switch result {
-                case .success(let rainyPercentage):
+                case .success(let description):
                     DispatchQueue.main.async {
-                        self.rainypercentLabel.text = "\(rainyPercentage)"
+                        let weatherStatus = self.getWeatherStatus(from: description)
+                        self.weatherLabel.text = weatherStatus
+                        
+                        if weatherStatus == "晴れ" {
+                            self.backgroundImage.image = UIImage(named: "sunny")
+                        } else if weatherStatus == "曇り" {
+                            self.backgroundImage.image = UIImage(named: "cloudy")
+                        } else {
+                            self.backgroundImage.image = UIImage(named: "rainy")
+                        }
                     }
-                    print("Rainy percentage: \(rainyPercentage)%")
+                    print(description)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+            
+            getPopValue(apiKey: "fca09c676c26d6e1d67d6ac5fe12168d", latitude: latitude, longitude: longitude) { result in
+                switch result {
+                case .success(let averagePop):
+                    DispatchQueue.main.async {
+                        self.rainypercentLabel.text = "\(averagePop)"
+                    }
+                    print("Rainy percentage: \(averagePop)%")
                 case .failure(let error):
                     print("Error:", error.localizedDescription)
                 }
             }
-
-
             
             fetchCityFromCoordinates(latitude: latitude, longitude: longitude) { result in
                 switch result {
@@ -122,6 +100,7 @@ class SunnyViewController: UIViewController {
         } else {
             print("Latitude and/or longitude not found in UserDefaults")
         }
+        
     }
     
     func fetchWeatherData1(latitude: Double, longitude: Double, completion: @escaping (Result<String, Error>) -> Void) {
@@ -196,110 +175,35 @@ class SunnyViewController: UIViewController {
         
         task.resume()
     }
-
     
-//    func fetchRainProbability(latitude: Double, longitude: Double, completion: @escaping (Result<Int, Error>) -> Void) {
-//        let apiKey = "fca09c676c26d6e1d67d6ac5fe12168d"
-//        let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)")!
-//
-//        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-//            if let error = error {
-//                completion(.failure(error))
-//                return
-//            }
-//
-//            guard let data = data else {
-//                let error = NSError(domain: "WeatherAPIError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid data received"])
-//                completion(.failure(error))
-//                return
-//            }
-//
-//            do {
-//                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-//                   let weatherArray = json["weather"] as? [[String: Any]],
-//                   let weather = weatherArray.first,
-//                   let weatherDescription = weather["description"] as? String {
-//                    // 降水確率の推測ロジックを実装する（例: "rain" のキーワードが含まれていれば降水確率を高めに設定する）
-//                    let rainProbability = weatherDescription.contains("rain") ? 70 : 20
-//                    completion(.success(rainProbability))
-//                } else {
-//                    let error = NSError(domain: "WeatherAPIError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid data format"])
-//                    completion(.failure(error))
-//                }
-//            } catch {
-//                completion(.failure(error))
-//            }
-//        }
-//
-//        task.resume()
-//    }
+    func getWeatherStatus(from description: String) -> String {
+        switch description {
+        case "clear sky", "few clouds":
+            return "晴れ"
+        case "scattered clouds", "broken clouds":
+            return "曇り"
+        case "shower rain", "rain", "thunderstorm":
+            return "雨"
+        case "snow":
+            return "雪"
+        case "mist":
+            return "霧"
+        default:
+            return "その他"
+        }
+    }
     
-//    func getRainyPercentage(apiKey: String, latitude: Double, longitude: Double, completion: @escaping (Result<Double, Error>) -> Void) {
-//        let baseURL = "http://api.openweathermap.org/data/2.5/weather"
-//        let params = [
-//            "lat": "\(latitude)",
-//            "lon": "\(longitude)",
-//            "appid": apiKey,
-//            "units": "metric"
-//        ]
-//
-//        let url = URL(string: baseURL)!
-//        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)!
-//        urlComponents.queryItems = params.map { URLQueryItem(name: $0.key, value: $0.value) }
-//        let finalURL = urlComponents.url!
-//
-//        let task = URLSession.shared.dataTask(with: finalURL) { (data, response, error) in
-//            if let error = error {
-//                completion(.failure(error))
-//                return
-//            }
-//
-//            guard let httpResponse = response as? HTTPURLResponse,
-//                  (200...299).contains(httpResponse.statusCode) else {
-//                let error = NSError(domain: "WeatherAPIError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid response"])
-//                completion(.failure(error))
-//                return
-//            }
-//
-//            if let data = data {
-//                do {
-//                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-//                    if let weatherData = json as? [String: Any],
-//                       let weatherArray = weatherData["weather"] as? [[String: Any]],
-//                       let weather = weatherArray.first,
-//                       let rainData = weatherData["rain"] as? [String: Double],
-//                       let rainVolume = rainData["1h"] {
-//
-//                        let rainyPercentage = (rainVolume / 3) * 100  // Assuming 3 hours as a period
-//                        completion(.success(rainyPercentage))
-//                    } else {
-//                        let error = NSError(domain: "WeatherAPIError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Rainy data not available"])
-//                        completion(.failure(error))
-//                    }
-//                } catch {
-//                    completion(.failure(error))
-//                }
-//            }
-//        }
-//
-//        task.resume()
-//    }
-    
-    func getRainyPercentage(apiKey: String, latitude: Double, longitude: Double, completion: @escaping (Result<Double, Error>) -> Void) {
-        let baseURL = "https://api.openweathermap.org/data/2.5/weather"
-        let params = [
-            "lat": "\(latitude)",
-            "lon": "\(longitude)",
-            "appid": apiKey,
-            "units": "metric"
-        ]
+    func getPopValue(apiKey: String, latitude: Double, longitude: Double, completion: @escaping (Result<Double, Error>) -> Void) {
+        let baseURL = "https://pro.openweathermap.org/data/2.5/forecast/hourly"
+        let urlString = "\(baseURL)?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)"
         
-        let url = URL(string: baseURL)!
-        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)!
-        urlComponents.queryItems = params.map { URLQueryItem(name: $0.key, value: $0.value) }
-        let finalURL = urlComponents.url!
+        guard let url = URL(string: urlString) else {
+            let error = NSError(domain: "Invalid URL", code: 0, userInfo: nil)
+            completion(.failure(error))
+            return
+        }
         
-        let task = URLSession.shared.dataTask(with: finalURL) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -307,7 +211,7 @@ class SunnyViewController: UIViewController {
             
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode) else {
-                let error = NSError(domain: "WeatherAPIError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid response"])
+                let error = NSError(domain: "Invalid response", code: 0, userInfo: nil)
                 completion(.failure(error))
                 return
             }
@@ -316,16 +220,24 @@ class SunnyViewController: UIViewController {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
                     print(json)
-                    if let weatherData = json as? [String: Any],
-                       let weatherArray = weatherData["weather"] as? [[String: Any]],
-                       let weather = weatherArray.first,
-                       let rainData = weatherData["rain"] as? [String: Double],
-                       let rainVolume = rainData["1h"] {
+                    if let forecastData = json as? [String: Any],
+                       let hourlyData = forecastData["hourly"] as? [[String: Any]] {
                         
-                        let rainyPercentage = (rainVolume / 3) * 100  // Assuming 3 hours as a period
-                        completion(.success(rainyPercentage))
+                        var totalPop = 0.0
+                        var totalCount = 0
+                        
+                        for hour in hourlyData {
+                            if let pop = hour["pop"] as? Double {
+                                totalPop += pop
+                                totalCount += 1
+                            }
+                        }
+                        
+                        let averagePop = totalPop / Double(totalCount)
+                        completion(.success(averagePop))
+                        
                     } else {
-                        let error = NSError(domain: "WeatherAPIError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Rainy data not available"])
+                        let error = NSError(domain: "Forecast data not available", code: 0, userInfo: nil)
                         completion(.failure(error))
                     }
                 } catch {
@@ -336,7 +248,6 @@ class SunnyViewController: UIViewController {
         
         task.resume()
     }
-
 
     func fetchCityFromCoordinates(latitude: CLLocationDegrees, longitude: CLLocationDegrees, completion: @escaping (Result<String, Error>) -> Void) {
         let location = CLLocation(latitude: latitude, longitude: longitude)
@@ -362,43 +273,6 @@ class SunnyViewController: UIViewController {
             }
         }
     }
-    
-    
-//    func printCurrentDate() {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "M月d日"
-//        formatter.timeStyle = .none
-//
-//        let currentDate = Date()
-//        let formattedDate = formatter.string(from: currentDate)
-//        dateLabel.text = formattedDate
-//        print("Current Date: \(formattedDate)")
-//    }
-
-    
-//    func printCurrentDate() {
-//            let formatter = DateFormatter()
-//            formatter.dateFormat = "M月d日"
-//            formatter.timeStyle = .none
-//            formatter.locale = Locale(identifier: "ja_JP")
-//
-//            let currentDate = Date()
-//            let formattedDate = formatter.string(from: currentDate)
-//            dateLabel.text = formattedDate
-//            print("Current Date: \(formattedDate)")
-//        }
-    
-//    func printCurrentDate() {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "M月d日"
-//        formatter.timeStyle = .none
-//        formatter.locale = Locale(identifier: "ja_JP") // 言語と地域に応じたロケールを設定
-//
-//        let currentDate = Date()
-//        let formattedDate = formatter.string(from: currentDate)
-//        dateLabel.text = formattedDate
-//        print("Current Date: \(formattedDate)")
-//    }
 
     func printCurrentDate() {
         let formatter = DateFormatter()
