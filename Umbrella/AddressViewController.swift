@@ -5,9 +5,11 @@ class AddressViewController: UIViewController {
     @IBOutlet weak var postcode1: UITextField!
     @IBOutlet weak var postcode2: UITextField!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        saveButton.layer.cornerRadius = 10
         // Do any additional setup after loading the view.
     }
     
