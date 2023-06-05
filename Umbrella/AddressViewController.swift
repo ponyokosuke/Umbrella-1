@@ -38,6 +38,10 @@ class AddressViewController: UIViewController {
         }
         self.dismiss(animated: true)
     }
+    
+    @IBAction func backButtonTapped(_ sender: Any){
+        self.dismiss(animated: true)
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -50,10 +54,6 @@ class AddressViewController: UIViewController {
         } else {
             print("保存された緯度と経度はありません。")
         }
-    }
-    
-    @IBAction func backButtonTapped(_ sender: Any){
-        self.dismiss(animated: true)
     }
     
 }

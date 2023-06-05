@@ -73,6 +73,9 @@
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="arrowshape.turn.up.backward.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WyQ-cG-3Vg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -80,6 +83,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="NdX-VP-uDk"/>
                     <connections>
+                        <outlet property="backButton" destination="9hY-eB-07O" id="WoP-Aw-bsz"/>
                         <outlet property="postcode1" destination="38k-O9-WRQ" id="sta-El-AGX"/>
                         <outlet property="postcode2" destination="CFB-WR-G1h" id="4GS-NP-dtc"/>
                     </connections>
