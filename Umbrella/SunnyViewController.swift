@@ -75,7 +75,7 @@ class SunnyViewController: UIViewController {
 //        }
         }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         printCurrentDate()
         
         if let latitude = UserDefaults.standard.value(forKey: "latitude") as? Double,
@@ -133,7 +133,6 @@ class SunnyViewController: UIViewController {
             print("Latitude and/or longitude not found in UserDefaults")
         }
     }
-
     
     func fetchWeatherData1(latitude: Double, longitude: Double, completion: @escaping (Result<String, Error>) -> Void) {
         let apiKey = "fca09c676c26d6e1d67d6ac5fe12168d"
