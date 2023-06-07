@@ -223,6 +223,7 @@ class SunnyViewController: UIViewController {
             
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                print(json)
                 
                 if let forecasts = json["forecasts"] as? [[String: Any]], let todayForecast = forecasts.first {
                     if let telop = todayForecast["telop"] as? String {

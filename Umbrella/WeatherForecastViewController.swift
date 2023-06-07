@@ -1,16 +1,9 @@
-//
-//  WeatherForecastViewController.swift
-//  Umbrella
-//
-//  Created by 山下幸助 on 2023/05/21.
-//
-
 import UIKit
 
 class WeatherForecastViewController: UIViewController {
     
+    @IBOutlet weak var date: UIView!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,15 +15,5 @@ class WeatherForecastViewController: UIViewController {
         return 7
 
       }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
