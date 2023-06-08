@@ -229,7 +229,6 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.9038268008" green="0.94382787059999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
-                                            <outlet property="dateLabel" destination="dBT-vC-cBF" id="O4V-gi-BfG"/>
                                             <outlet property="datelistLabel" destination="dBT-vC-cBF" id="bxq-hi-BhP"/>
                                             <outlet property="popLabel" destination="TBp-eb-XqZ" id="dXy-vy-rE8"/>
                                             <outlet property="weatherImage" destination="Ojm-3D-iTe" id="igo-XY-GSE"/>
