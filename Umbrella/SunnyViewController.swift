@@ -21,6 +21,13 @@ class SunnyViewController: UIViewController {
     override func viewDidLoad() {
             super.viewDidLoad()
         whitebox.layer.cornerRadius = 25
+        
+        whitebox.layer.cornerRadius = 25
+
+        if let backgroundView = backgroundImage {
+                view.addSubview(backgroundView)
+                view.sendSubviewToBack(backgroundView)
+            }
         }
     
     override func viewDidAppear(_ animated: Bool) {

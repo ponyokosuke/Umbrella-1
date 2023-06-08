@@ -9,6 +9,9 @@ class WeatherForecastViewController: UIViewController, UITableViewDataSource {
         
         tableView.dataSource = self
         tableView.reloadData()
+        
+        tableView.register(WeatherTableViewCell.self, forCellReuseIdentifier: "WeatherCell")
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -16,7 +19,7 @@ class WeatherForecastViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! WeatherTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as! WeatherTableViewCell
         
         let currentDate = Date() // 現在の日付を取得
         let dayOffset = indexPath.row // インデックスに応じた日数を加算

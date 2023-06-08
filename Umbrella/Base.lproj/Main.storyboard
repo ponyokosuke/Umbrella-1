@@ -102,7 +102,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8zg-63-YAp">
+                            <view contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8zg-63-YAp">
                                 <rect key="frame" x="44" y="118" width="304" height="529"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -156,13 +156,16 @@
                                     <segue destination="BYZ-38-t0r" kind="presentation" id="bT0-zf-Fzs"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mVj-75-Jaa">
-                                <rect key="frame" x="-17" y="-141" width="427" height="910"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mVj-75-Jaa">
+                                <rect key="frame" x="-17" y="-158" width="427" height="910"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pz2-jN-eyd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="pz2-jN-eyd" firstAttribute="bottom" secondItem="mVj-75-Jaa" secondAttribute="bottom" constant="25" id="S0d-35-7Qd"/>
+                            <constraint firstItem="pz2-jN-eyd" firstAttribute="bottom" secondItem="mVj-75-Jaa" secondAttribute="bottom" constant="20" id="lHO-Ua-gGT"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="home" image="house" catalog="system" selectedImage="house" id="NjU-8w-uio"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
