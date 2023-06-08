@@ -17,6 +17,7 @@
 		4534E8002A1A063400EE8CC9 /* SunnyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E7FF2A1A063400EE8CC9 /* SunnyViewController.swift */; };
 		4534E8082A1A070100EE8CC9 /* WeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E8072A1A070100EE8CC9 /* WeatherForecastViewController.swift */; };
 		4534E8102A3131F500EE8CC9 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E80F2A3131F500EE8CC9 /* WeatherTableViewCell.swift */; };
+		4534E8132A327D3700EE8CC9 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534E8122A327D3700EE8CC9 /* UserNotifications.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		4534E8072A1A070100EE8CC9 /* WeatherForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastViewController.swift; sourceTree = "<group>"; };
 		4534E80E2A31293100EE8CC9 /* Umbrella.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Umbrella.entitlements; sourceTree = "<group>"; };
 		4534E80F2A3131F500EE8CC9 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
+		4534E8122A327D3700EE8CC9 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4534E8132A327D3700EE8CC9 /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +54,7 @@
 			children = (
 				4534E7E82A19F6F200EE8CC9 /* Umbrella */,
 				4534E7E72A19F6F200EE8CC9 /* Products */,
+				4534E8112A327D3700EE8CC9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +83,14 @@
 				4534E80F2A3131F500EE8CC9 /* WeatherTableViewCell.swift */,
 			);
 			path = Umbrella;
+			sourceTree = "<group>";
+		};
+		4534E8112A327D3700EE8CC9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4534E8122A327D3700EE8CC9 /* UserNotifications.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
