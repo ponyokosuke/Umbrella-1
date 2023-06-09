@@ -204,58 +204,6 @@ class SunnyViewController: UIViewController {
         }
     }
     
-//    func getPopValue(apiKey: String, latitude: Double, longitude: Double, completion: @escaping (Result<Double, Error>) -> Void) {
-//        let baseURL = "https://api.openweathermap.org/data/2.5/forecast"
-//        let urlString = "\(baseURL)?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)&units=metric"
-//
-//        guard let url = URL(string: urlString) else {
-//            let error = NSError(domain: "Invalid URL", code: 0, userInfo: nil)
-//            completion(.failure(error))
-//            return
-//        }
-//
-//        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-//            if let error = error {
-//                completion(.failure(error))
-//                return
-//            }
-//
-//            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-//                let error = NSError(domain: "Invalid response", code: 0, userInfo: nil)
-//                completion(.failure(error))
-//                return
-//            }
-//
-//            if let data = data {
-//                do {
-//                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-//                    print(json)
-//                    if let forecastData = json as? [String: Any], let hourlyData = forecastData["list"] as? [[String: Any]] {
-//                        var totalPop = 0.0
-//                        var totalCount = 0
-//
-//                        for hour in hourlyData {
-//                            if let pop = hour["pop"] as? Double {
-//                                totalPop += pop
-//                                totalCount += 1
-//                            }
-//                        }
-//
-//                        let averagePop = totalPop / Double(totalCount)
-//                        completion(.success(averagePop))
-//                    } else {
-//                        let error = NSError(domain: "Forecast data not available", code: 0, userInfo: nil)
-//                        completion(.failure(error))
-//                    }
-//                } catch {
-//                    completion(.failure(error))
-//                }
-//            }
-//        }
-//
-//        task.resume()
-//    }
-    
     func getPopValue(apiKey: String, latitude: Double, longitude: Double, completion: @escaping (Result<Double, Error>) -> Void) {
         let baseURL = "https://api.openweathermap.org/data/2.5/forecast"
         let urlString = "\(baseURL)?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)&units=metric"
@@ -355,12 +303,4 @@ class SunnyViewController: UIViewController {
         dateLabel.text = formattedDate
         print("Current Date: \(formattedDate)")
     }
-    
-    func printCurrentTime() {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss"
-        let currentTime = formatter.string(from: Date())
-        print("Current time: \(currentTime)")
-    }
-
 }

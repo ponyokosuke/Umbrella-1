@@ -16,8 +16,9 @@
 		4534E7FE2A1A058200EE8CC9 /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E7FD2A1A058200EE8CC9 /* AddressViewController.swift */; };
 		4534E8002A1A063400EE8CC9 /* SunnyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E7FF2A1A063400EE8CC9 /* SunnyViewController.swift */; };
 		4534E8082A1A070100EE8CC9 /* WeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E8072A1A070100EE8CC9 /* WeatherForecastViewController.swift */; };
-		4534E8102A3131F500EE8CC9 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E80F2A3131F500EE8CC9 /* WeatherTableViewCell.swift */; };
 		4534E8132A327D3700EE8CC9 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534E8122A327D3700EE8CC9 /* UserNotifications.framework */; };
+		4534E8162A33DD8600EE8CC9 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E8142A33DD8600EE8CC9 /* WeatherTableViewCell.swift */; };
+		4534E8172A33DD8600EE8CC9 /* WeatherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4534E8152A33DD8600EE8CC9 /* WeatherTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +34,9 @@
 		4534E7FF2A1A063400EE8CC9 /* SunnyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunnyViewController.swift; sourceTree = "<group>"; };
 		4534E8072A1A070100EE8CC9 /* WeatherForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastViewController.swift; sourceTree = "<group>"; };
 		4534E80E2A31293100EE8CC9 /* Umbrella.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Umbrella.entitlements; sourceTree = "<group>"; };
-		4534E80F2A3131F500EE8CC9 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
 		4534E8122A327D3700EE8CC9 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		4534E8142A33DD8600EE8CC9 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
+		4534E8152A33DD8600EE8CC9 /* WeatherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,13 +76,14 @@
 				4534E7EB2A19F6F200EE8CC9 /* SceneDelegate.swift */,
 				4534E7ED2A19F6F200EE8CC9 /* ViewController.swift */,
 				4534E7EF2A19F6F200EE8CC9 /* Main.storyboard */,
+				4534E8152A33DD8600EE8CC9 /* WeatherTableViewCell.xib */,
 				4534E7F22A19F6F300EE8CC9 /* Assets.xcassets */,
 				4534E7F42A19F6F300EE8CC9 /* LaunchScreen.storyboard */,
 				4534E7F72A19F6F300EE8CC9 /* Info.plist */,
 				4534E7FD2A1A058200EE8CC9 /* AddressViewController.swift */,
 				4534E7FF2A1A063400EE8CC9 /* SunnyViewController.swift */,
 				4534E8072A1A070100EE8CC9 /* WeatherForecastViewController.swift */,
-				4534E80F2A3131F500EE8CC9 /* WeatherTableViewCell.swift */,
+				4534E8142A33DD8600EE8CC9 /* WeatherTableViewCell.swift */,
 			);
 			path = Umbrella;
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4534E8172A33DD8600EE8CC9 /* WeatherTableViewCell.xib in Resources */,
 				4534E7F62A19F6F300EE8CC9 /* LaunchScreen.storyboard in Resources */,
 				4534E7F32A19F6F300EE8CC9 /* Assets.xcassets in Resources */,
 				4534E7F12A19F6F200EE8CC9 /* Main.storyboard in Resources */,
@@ -170,7 +174,7 @@
 			files = (
 				4534E7EE2A19F6F200EE8CC9 /* ViewController.swift in Sources */,
 				4534E8002A1A063400EE8CC9 /* SunnyViewController.swift in Sources */,
-				4534E8102A3131F500EE8CC9 /* WeatherTableViewCell.swift in Sources */,
+				4534E8162A33DD8600EE8CC9 /* WeatherTableViewCell.swift in Sources */,
 				4534E8082A1A070100EE8CC9 /* WeatherForecastViewController.swift in Sources */,
 				4534E7EA2A19F6F200EE8CC9 /* AppDelegate.swift in Sources */,
 				4534E7EC2A19F6F200EE8CC9 /* SceneDelegate.swift in Sources */,
