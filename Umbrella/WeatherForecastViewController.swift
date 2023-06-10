@@ -11,6 +11,7 @@ class WeatherForecastViewController: UIViewController, UITableViewDataSource, UI
 
         tableView.register(UINib(nibName: "WeatherTableViewCell", bundle: nil), forCellReuseIdentifier: "WeatherCell")
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.reloadData()
 
         let testDate = Date()
@@ -49,6 +50,10 @@ class WeatherForecastViewController: UIViewController, UITableViewDataSource, UI
         }
     }
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0 // セルの高さを設定
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return maxPops.count
     }
@@ -71,14 +76,27 @@ class WeatherForecastViewController: UIViewController, UITableViewDataSource, UI
         cell.poplistLabel?.text = formattedPop
 
         if maxPop <= 0.3 {
+            cell.backgroundColor = UIColor(red: 135/255, green: 206/255, blue: 235/255, alpha: 1) // rgb(n,n,n)=#87CEEB
             cell.imagelistLabel?.image = UIImage(named: "sunnyumbrella")
         } else if maxPop <= 0.7 {
+            cell.backgroundColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1) // rgb(n,n,n)=#D3D3D3
             cell.imagelistLabel?.image = UIImage(named: "cloudyumbrella")
         } else {
+            cell.backgroundColor = UIColor(red: 65/255, green: 105/255, blue: 225/255, alpha: 1) // rgb(n,n,n)=#4169E1
             cell.imagelistLabel?.image = UIImage(named: "rainyumbrella")
         }
 
+        roundCorners(for: cell, corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10.0)
+
         return cell
+    }
+
+    func roundCorners(for view: UIView, corners: UIRectCorner, radius: CGFloat) {
+        let maskPath = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let maskLayer = CAShapeLayer()
+        maskLayer.frame = view.bounds
+        maskLayer.path = maskPath.cgPath
+        view.layer.mask = maskLayer
     }
 
     func getDTandPopValues(for date: Date, apiKey: String, latitude: Double, longitude: Double, completion: @escaping (Result<[(String, Double)], Error>) -> Void) {
