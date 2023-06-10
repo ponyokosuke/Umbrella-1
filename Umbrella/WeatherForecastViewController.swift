@@ -5,6 +5,8 @@ class WeatherForecastViewController: UIViewController, UITableViewDataSource, UI
     @IBOutlet weak var tableView: UITableView!
 
     var maxPops: [Double] = []
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,8 +18,11 @@ class WeatherForecastViewController: UIViewController, UITableViewDataSource, UI
 
         let testDate = Date()
 
-        if let latitude = UserDefaults.standard.value(forKey: "latitude") as? Double,
-           let longitude = UserDefaults.standard.value(forKey: "longitude") as? Double {
+        if let storedLatitude = UserDefaults.standard.value(forKey: "latitude") as? Double,
+           let storedLongitude = UserDefaults.standard.value(forKey: "longitude") as? Double {
+            latitude = storedLatitude
+            longitude = storedLongitude
+
             // APIキーの設定
             let apiKey = "fca09c676c26d6e1d67d6ac5fe12168d"
 
@@ -97,6 +102,50 @@ class WeatherForecastViewController: UIViewController, UITableViewDataSource, UI
         maskLayer.frame = view.bounds
         maskLayer.path = maskPath.cgPath
         view.layer.mask = maskLayer
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // UserDefaultsの値が更新された際に再度APIリクエストを送信する
+        NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChange(_:)), name: UserDefaults.didChangeNotification, object: nil)
+    }
+
+    @objc func userDefaultsDidChange(_ notification: Notification) {
+        if let storedLatitude = UserDefaults.standard.value(forKey: "latitude") as? Double,
+           let storedLongitude = UserDefaults.standard.value(forKey: "longitude") as? Double {
+            latitude = storedLatitude
+            longitude = storedLongitude
+
+            let testDate = Date()
+
+            // APIキーの設定
+            let apiKey = "fca09c676c26d6e1d67d6ac5fe12168d"
+
+            getDTandPopValues(for: testDate, apiKey: apiKey, latitude: latitude, longitude: longitude) { [weak self] result in
+                guard let self = self else {
+                    return
+                }
+
+                switch result {
+                case .success(let dtPopValues):
+                    // 取得した配列を出力
+                    for (dt, pop) in dtPopValues {
+                        print("dt: \(dt), pop: \(pop)")
+                    }
+
+                    self.maxPops = self.findMaxPops(dtPopValues: dtPopValues)
+
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+
+                case .failure(let error):
+                    print("Error: \(error)")
+                    // エラー処理を行う
+                }
+            }
+        }
     }
 
     func getDTandPopValues(for date: Date, apiKey: String, latitude: Double, longitude: Double, completion: @escaping (Result<[(String, Double)], Error>) -> Void) {
