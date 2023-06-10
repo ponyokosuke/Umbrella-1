@@ -11,8 +11,8 @@ class WeatherTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        datelistLabel = UILabel()
-        datelistLabel.textColor = UIColor.black
+//        datelistLabel = UILabel()
+//        datelistLabel.textColor = UIColor.black
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

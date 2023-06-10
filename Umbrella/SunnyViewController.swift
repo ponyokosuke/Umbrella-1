@@ -229,6 +229,7 @@ class SunnyViewController: UIViewController {
             if let data = data {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
                     if let forecastData = json as? [String: Any], let hourlyData = forecastData["list"] as? [[String: Any]] {
                         let currentTime = Date()
 
