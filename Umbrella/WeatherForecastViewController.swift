@@ -56,7 +56,7 @@ class WeatherForecastViewController: UIViewController, UITableViewDataSource, UI
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0 // セルの高さを設定
+        return 95.0 // セルの高さを設定
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
