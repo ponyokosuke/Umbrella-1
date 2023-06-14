@@ -23,7 +23,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o4g-fg-XcI">
-                                <rect key="frame" x="50" y="717" width="293" height="55"/>
+                                <rect key="frame" x="50" y="447" width="293" height="55"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
@@ -88,8 +88,8 @@
                             <constraint firstItem="38k-O9-WRQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="35" id="Orm-mI-PtF"/>
                             <constraint firstItem="CFB-WR-G1h" firstAttribute="top" secondItem="dFZ-yi-sO6" secondAttribute="bottom" constant="100" id="PC3-mD-R94"/>
                             <constraint firstItem="dFZ-yi-sO6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="T4B-kC-OjR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="o4g-fg-XcI" secondAttribute="bottom" constant="350" id="YlP-Pc-PeK"/>
                             <constraint firstItem="9hY-eB-07O" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="gGJ-va-gbl"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="o4g-fg-XcI" secondAttribute="bottom" constant="80" id="iB1-x8-euw"/>
                             <constraint firstItem="2Ih-qw-cWY" firstAttribute="top" secondItem="dFZ-yi-sO6" secondAttribute="bottom" constant="100" id="mSE-Wt-WRp"/>
                             <constraint firstItem="2Ih-qw-cWY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="t6L-Fv-AYe"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="CFB-WR-G1h" secondAttribute="trailing" constant="35" id="wW9-br-orP"/>
