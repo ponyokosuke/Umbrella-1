@@ -5,8 +5,8 @@ class WeatherForecastViewController: UIViewController, UITableViewDataSource, UI
     @IBOutlet weak var tableView: UITableView!
 
     var maxPops: [Double] = []
-    var latitude: Double = 0.0
-    var longitude: Double = 0.0
+    var latitude: Double = 24.2867
+    var longitude: Double = 153.9807
 
     override func viewDidLoad() {
         super.viewDidLoad()

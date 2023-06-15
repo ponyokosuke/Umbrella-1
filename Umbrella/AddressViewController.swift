@@ -6,14 +6,14 @@ class AddressViewController: UIViewController {
     @IBOutlet weak var postcode2: UITextField!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         saveButton.layer.cornerRadius = 20
         // Do any additional setup after loading the view.
     }
-    
-    
+
+
     @IBAction func saveButton(_ sender: Any) {
         let postcode = "\(postcode1.text!)\(postcode2.text!)"
         geocodeAddress(postcode: postcode) { (coordinate, error) in
@@ -21,14 +21,14 @@ class AddressViewController: UIViewController {
                 print("Geocoding error: \(error.localizedDescription)")
                 return
             }
-            
+
             if let coordinate = coordinate {
                 if !coordinate.latitude.isNaN && !coordinate.longitude.isNaN {
                     UserDefaults.standard.set(coordinate.latitude, forKey: "latitude")
                     UserDefaults.standard.set(coordinate.longitude, forKey: "longitude")
                     print("緯度: \(coordinate.latitude)")
                     print("経度: \(coordinate.longitude)")
-                    
+
                     // UserDefaultsの変更を即時に反映させる
                     UserDefaults.standard.synchronize()
                 } else {
@@ -40,14 +40,14 @@ class AddressViewController: UIViewController {
         }
         self.dismiss(animated: true)
     }
-    
+
     @IBAction func backButtonTapped(_ sender: Any){
         self.dismiss(animated: true)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         // UserDefaultsから緯度と経度を取得して出力する
         if let latitude = UserDefaults.standard.object(forKey: "latitude") as? Double,
             let longitude = UserDefaults.standard.object(forKey: "longitude") as? Double {
@@ -57,9 +57,9 @@ class AddressViewController: UIViewController {
             print("保存された緯度と経度はありません。")
         }
     }
-    
+
 }
-    
+
     func geocodeAddress(postcode: String, completionHandler: @escaping (CLLocationCoordinate2D?, Error?) -> Void) {
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(postcode) { (placemarks, error) in
@@ -67,12 +67,12 @@ class AddressViewController: UIViewController {
                 completionHandler(nil, error)
                 return
             }
-            
+
             guard let placemark = placemarks?.first else {
                 completionHandler(nil, nil)
                 return
             }
-            
+
             if let location = placemark.location {
                 completionHandler(location.coordinate, nil)
             } else {
