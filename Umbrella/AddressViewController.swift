@@ -1,7 +1,7 @@
 import UIKit
 import CoreLocation
 
-class AddressViewController: UIViewController {
+class AddressViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var postcode1: UITextField!
     @IBOutlet weak var postcode2: UITextField!
     @IBOutlet weak var backButton: UIButton!
@@ -11,8 +11,17 @@ class AddressViewController: UIViewController {
         super.viewDidLoad()
         saveButton.layer.cornerRadius = 20
         // Do any additional setup after loading the view.
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+                
+        postcode1.delegate = self
+        postcode2.delegate = self
     }
-
+    
+    @objc func dismissKeyboard() {
+            view.endEditing(true) // キーボードを閉じる
+        }
 
     @IBAction func saveButton(_ sender: Any) {
         let postcode = "\(postcode1.text!)\(postcode2.text!)"
@@ -79,4 +88,9 @@ class AddressViewController: UIViewController {
                 completionHandler(nil, nil)
             }
         }
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            textField.resignFirstResponder() // キーボードを閉じる
+            return true
     }
