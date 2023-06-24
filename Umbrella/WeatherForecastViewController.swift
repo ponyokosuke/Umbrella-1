@@ -58,6 +58,77 @@ class WeatherForecastViewController: UIViewController, UITableViewDataSource, UI
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 95.0 // セルの高さを設定
     }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+            return 8
+        }
+        
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+            let marginView = UIView()
+            marginView.backgroundColor = .clear
+            return marginView
+        }
+        
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+            return .leastNonzeroMagnitude
+        }
+    
+//    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+//        view.tintColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1) // 透明にすることでスペースとする
+//    }
+//
+//    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+//        view.tintColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1) // 透明にすることでスペースとする
+//    }
+//
+//
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 20
+//    }
+//
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//            let headerView = UIView()
+//            headerView.backgroundColor = UIColor.clear
+//            return headerView
+//        }
+
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 20
+//    }
+//
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        let footerView = UIView()
+//        footerView.backgroundColor = UIColor.clear
+//        return footerView
+//    }
+
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        nil
+//    }
+    
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 20
+//    }
+//    
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        return nil
+//    }
+    
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//            return 20 // セルの上部のスペース
+//        }
+//
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//            return 20 // セルの下部のスペース
+//        }
+//
+//    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+//        view.tintColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1) // 透明にすることでスペースとする
+//        }
+//
+//    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+//        view.tintColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1) // 透明にすることでスペースとする
+//        }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return maxPops.count
@@ -85,7 +156,7 @@ class WeatherForecastViewController: UIViewController, UITableViewDataSource, UI
             cell.imagelistLabel?.image = UIImage(named: "sunnyumbrella")
         } else if maxPop <= 0.7 {
             cell.backgroundColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1) // rgb(n,n,n)=#D3D3D3
-            cell.imagelistLabel?.image = UIImage(named: "cloudyumbrella")
+            cell.imagelistLabel?.image = UIImage(named: "cloudyumbrella 1")
         } else {
             cell.backgroundColor = UIColor(red: 65/255, green: 105/255, blue: 225/255, alpha: 1) // rgb(n,n,n)=#4169E1
             cell.imagelistLabel?.image = UIImage(named: "rainyumbrella")

@@ -32,11 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         content.title = "おはようございます"
         content.body = "今日の天気は"
 
-        if let weatherDescription = UserDefaults.standard.string(forKey: "WeatherDescription") {
+        if let weatherDescription = UserDefaults.standard.string(forKey: "WeatherStatus") {
             content.body += weatherDescription
 
             if weatherDescription == "雪" || weatherDescription == "雨" || weatherDescription == "小雨" || weatherDescription == "雷雨" {
                 content.body += "です。傘を忘れずにお持ちください"
+            }else{
+                content.body += "です。良い1日を！"
             }
         }
 

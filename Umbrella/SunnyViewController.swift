@@ -68,6 +68,9 @@ class SunnyViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.weatherLabel.text = self.getWeatherStatus(from: description)
                 }
+                let weatherStatus = self.getWeatherStatus(from: description)
+                self.weatherLabel.text = weatherStatus
+                UserDefaults.standard.set(weatherStatus, forKey: "WeatherStatus")
                 print(description)
             case .failure(let error):
                 print(error)
