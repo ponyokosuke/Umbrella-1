@@ -7,7 +7,7 @@ class WeatherForecastViewController: UIViewController, UITableViewDataSource, UI
     var maxPops: [Double] = []
     var latitude: Double = 24.2867
     var longitude: Double = 153.9807
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,30 +23,34 @@ class WeatherForecastViewController: UIViewController, UITableViewDataSource, UI
             latitude = storedLatitude
             longitude = storedLongitude
 
-            // APIキーの設定
-            let apiKey = "fca09c676c26d6e1d67d6ac5fe12168d"
-
-            getDTandPopValues(for: testDate, apiKey: apiKey, latitude: latitude, longitude: longitude) { [weak self] result in
-                guard let self = self else {
-                    return
-                }
-
-                switch result {
-                case .success(let dtPopValues):
-                    // 取得した配列を出力
-                    for (dt, pop) in dtPopValues {
-                        print("dt: \(dt), pop: \(pop)")
+            // キャッシュからデータを取得
+            if let cachedData = getCachedData() {
+                handleAPIResult(result: .success(cachedData))
+            } else {
+                // APIキーの設定
+                let apiKey = "d608cfc1b1575d9f5288e0265d67fe91"
+                getDTandPopValues(for: testDate, apiKey: apiKey, latitude: latitude, longitude: longitude) { [weak self] result in
+                    guard let self = self else {
+                        return
                     }
 
-                    self.maxPops = self.findMaxPops(dtPopValues: dtPopValues)
+                    switch result {
+                    case .success(let dtPopValues):
+                        // 取得した配列を出力
+                        for (dt, pop) in dtPopValues {
+                            print("dt: \(dt), pop: \(pop)")
+                        }
 
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
+                        self.maxPops = self.findMaxPops(dtPopValues: dtPopValues)
+
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+
+                    case .failure(let error):
+                        print("Error: \(error)")
+                        // エラー処理を行う
                     }
-
-                case .failure(let error):
-                    print("Error: \(error)")
-                    // エラー処理を行う
                 }
             }
         } else {
@@ -55,80 +59,102 @@ class WeatherForecastViewController: UIViewController, UITableViewDataSource, UI
         }
     }
 
+    func fetchDataFromAPI() {
+        // APIキーの設定
+        let apiKey = "d608cfc1b1575d9f5288e0265d67fe91"
+        
+        let testDate = Date() // 追加
+
+        getDTandPopValues(for: testDate, apiKey: apiKey, latitude: latitude, longitude: longitude) { [weak self] result in
+            guard let self = self else {
+                return
+            }
+
+            switch result {
+            case .success(let dtPopValues):
+                // キャッシュにデータを保存
+                self.cacheData(dtPopValues: dtPopValues)
+                
+                self.handleAPIResult(result: .success(dtPopValues))
+
+            case .failure(let error):
+                print("Error: \(error)")
+                // エラー処理を行う
+            }
+        }
+    }
+    
+    func handleAPIResult(result: Result<[(String, Double)], Error>) {
+        switch result {
+        case .success(let dtPopValues):
+            // 取得した配列を出力
+            for (dt, pop) in dtPopValues {
+                print("dt: \(dt), pop: \(pop)")
+            }
+
+            self.maxPops = self.findMaxPops(dtPopValues: dtPopValues)
+
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+
+        case .failure(let error):
+            print("Error: \(error)")
+            // エラー処理を行う
+        }
+    }
+    
+    @objc func userDefaultsDidChange(_ notification: Notification) {
+        // 緯度または経度が変更された場合のみ新しいデータを取得
+        if let storedLatitude = UserDefaults.standard.value(forKey: "latitude") as? Double,
+           let storedLongitude = UserDefaults.standard.value(forKey: "longitude") as? Double,
+           (latitude != storedLatitude || longitude != storedLongitude) {
+
+            // 緯度と経度を更新
+            latitude = storedLatitude
+            longitude = storedLongitude
+
+            // キャッシュをクリア
+            clearCachedData()
+
+            // APIを呼び出して新しいデータを取得
+            fetchDataFromAPI()
+        }
+    }
+    
+    func getCachedData() -> [(String, Double)]? {
+        if let data = UserDefaults.standard.array(forKey: "cachedData") as? [[String: Any]] {
+            return data.compactMap { dict in
+                guard let dt = dict["dt"] as? String, let pop = dict["pop"] as? Double else {
+                    return nil
+                }
+                return (dt, pop)
+            }
+        }
+        return nil
+    }
+
+    func cacheData(dtPopValues: [(String, Double)]) {
+        let cachedData = dtPopValues.map { (dt, pop) -> [String: Any] in
+            return ["dt": dt, "pop": pop]
+        }
+        UserDefaults.standard.set(cachedData, forKey: "cachedData")
+    }
+
+
+    func clearCachedData() {
+        UserDefaults.standard.removeObject(forKey: "cachedData")
+    }
+
+
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 95.0 // セルの高さを設定
+        return 115.0 // セルの高さを設定
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
             return 8
         }
-        
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-            let marginView = UIView()
-            marginView.backgroundColor = .clear
-            return marginView
-        }
-        
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-            return .leastNonzeroMagnitude
-        }
-    
-//    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-//        view.tintColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1) // 透明にすることでスペースとする
-//    }
-//
-//    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-//        view.tintColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1) // 透明にすることでスペースとする
-//    }
-//
-//
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 20
-//    }
-//
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//            let headerView = UIView()
-//            headerView.backgroundColor = UIColor.clear
-//            return headerView
-//        }
-
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return 20
-//    }
-//
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        let footerView = UIView()
-//        footerView.backgroundColor = UIColor.clear
-//        return footerView
-//    }
-
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        nil
-//    }
-    
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return 20
-//    }
-//    
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        return nil
-//    }
-    
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//            return 20 // セルの上部のスペース
-//        }
-//
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//            return 20 // セルの下部のスペース
-//        }
-//
-//    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-//        view.tintColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1) // 透明にすることでスペースとする
-//        }
-//
-//    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-//        view.tintColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1) // 透明にすることでスペースとする
-//        }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return maxPops.count
@@ -148,18 +174,24 @@ class WeatherForecastViewController: UIViewController, UITableViewDataSource, UI
         }
 
         let maxPop = maxPops[indexPath.row]
+        UserDefaults.standard.set(maxPop, forKey: "maxPop")
         let formattedPop = String(format: "%.0f%%", maxPop * 100) // パーセンテージに変換
         cell.poplistLabel?.text = formattedPop
 
         if maxPop <= 0.3 {
-            cell.backgroundColor = UIColor(red: 135/255, green: 206/255, blue: 235/255, alpha: 1) // rgb(n,n,n)=#87CEEB
             cell.imagelistLabel?.image = UIImage(named: "sunnyumbrella")
         } else if maxPop <= 0.7 {
-            cell.backgroundColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1) // rgb(n,n,n)=#D3D3D3
             cell.imagelistLabel?.image = UIImage(named: "cloudyumbrella 1")
         } else {
-            cell.backgroundColor = UIColor(red: 65/255, green: 105/255, blue: 225/255, alpha: 1) // rgb(n,n,n)=#4169E1
             cell.imagelistLabel?.image = UIImage(named: "rainyumbrella")
+        }
+        
+        if maxPop <= 0.3 {
+            cell.cellView.backgroundColor = UIColor(red: 135/255, green: 206/255, blue: 235/255, alpha: 1) // rgb(n,n,n)=#87CEEB
+        } else if maxPop <= 0.7 {
+            cell.cellView.backgroundColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1) // rgb(n,n,n)=#D3D3D3
+        } else {
+            cell.cellView.backgroundColor = UIColor(red: 65/255, green: 105/255, blue: 225/255, alpha: 1) // rgb(n,n,n)=#4169E1
         }
 
         roundCorners(for: cell, corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10.0)
@@ -180,43 +212,6 @@ class WeatherForecastViewController: UIViewController, UITableViewDataSource, UI
 
         // UserDefaultsの値が更新された際に再度APIリクエストを送信する
         NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChange(_:)), name: UserDefaults.didChangeNotification, object: nil)
-    }
-
-    @objc func userDefaultsDidChange(_ notification: Notification) {
-        if let storedLatitude = UserDefaults.standard.value(forKey: "latitude") as? Double,
-           let storedLongitude = UserDefaults.standard.value(forKey: "longitude") as? Double {
-            latitude = storedLatitude
-            longitude = storedLongitude
-
-            let testDate = Date()
-
-            // APIキーの設定
-            let apiKey = "fca09c676c26d6e1d67d6ac5fe12168d"
-
-            getDTandPopValues(for: testDate, apiKey: apiKey, latitude: latitude, longitude: longitude) { [weak self] result in
-                guard let self = self else {
-                    return
-                }
-
-                switch result {
-                case .success(let dtPopValues):
-                    // 取得した配列を出力
-                    for (dt, pop) in dtPopValues {
-                        print("dt: \(dt), pop: \(pop)")
-                    }
-
-                    self.maxPops = self.findMaxPops(dtPopValues: dtPopValues)
-
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-
-                case .failure(let error):
-                    print("Error: \(error)")
-                    // エラー処理を行う
-                }
-            }
-        }
     }
 
     func getDTandPopValues(for date: Date, apiKey: String, latitude: Double, longitude: Double, completion: @escaping (Result<[(String, Double)], Error>) -> Void) {
@@ -290,4 +285,6 @@ class WeatherForecastViewController: UIViewController, UITableViewDataSource, UI
 
         return maxPops
     }
+    
+    
 }

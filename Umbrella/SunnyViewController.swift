@@ -99,7 +99,7 @@ class SunnyViewController: UIViewController {
             }
         }
         
-        getPopValue(apiKey: "fca09c676c26d6e1d67d6ac5fe12168d", latitude: latitude, longitude: longitude) { result in
+        getPopValue(apiKey: "d608cfc1b1575d9f5288e0265d67fe91", latitude: latitude, longitude: longitude) { result in
             switch result {
             case .success(let averagePop):
                 DispatchQueue.main.async {
@@ -131,7 +131,7 @@ class SunnyViewController: UIViewController {
 //        }
 
     func fetchWeatherData1(latitude: Double, longitude: Double, completion: @escaping (Result<String, Error>) -> Void) {
-        let apiKey = "fca09c676c26d6e1d67d6ac5fe12168d"
+        let apiKey = "d608cfc1b1575d9f5288e0265d67fe91"
         let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)")!
 
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -168,7 +168,7 @@ class SunnyViewController: UIViewController {
 
 
     func fetchWeatherData2(latitude: Double, longitude: Double, completion: @escaping (Result<String, Error>) -> Void) {
-        let apiKey = "fca09c676c26d6e1d67d6ac5fe12168d"
+        let apiKey = "d608cfc1b1575d9f5288e0265d67fe91"
         let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)")!
 
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in

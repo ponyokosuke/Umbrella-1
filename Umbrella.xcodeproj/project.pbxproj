@@ -19,6 +19,11 @@
 		4534E8132A327D3700EE8CC9 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534E8122A327D3700EE8CC9 /* UserNotifications.framework */; };
 		4534E8162A33DD8600EE8CC9 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4534E8142A33DD8600EE8CC9 /* WeatherTableViewCell.swift */; };
 		4534E8172A33DD8600EE8CC9 /* WeatherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4534E8152A33DD8600EE8CC9 /* WeatherTableViewCell.xib */; };
+		45C0A0472A4DDF2500FED8CC /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C0A0462A4DDF2500FED8CC /* AlarmViewController.swift */; };
+		45C0A0492A4DFA1D00FED8CC /* KerningdatelistLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C0A0482A4DFA1D00FED8CC /* KerningdatelistLabel.swift */; };
+		45C0A04B2A4DFBB200FED8CC /* KerningpoplistLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C0A04A2A4DFBB200FED8CC /* KerningpoplistLable.swift */; };
+		45C0A04E2A4F015400FED8CC /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C0A04C2A4F015400FED8CC /* MainTableViewCell.swift */; };
+		45C0A04F2A4F015400FED8CC /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45C0A04D2A4F015400FED8CC /* MainTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +42,11 @@
 		4534E8122A327D3700EE8CC9 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		4534E8142A33DD8600EE8CC9 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
 		4534E8152A33DD8600EE8CC9 /* WeatherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherTableViewCell.xib; sourceTree = "<group>"; };
+		45C0A0462A4DDF2500FED8CC /* AlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
+		45C0A0482A4DFA1D00FED8CC /* KerningdatelistLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KerningdatelistLabel.swift; sourceTree = "<group>"; };
+		45C0A04A2A4DFBB200FED8CC /* KerningpoplistLable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KerningpoplistLable.swift; sourceTree = "<group>"; };
+		45C0A04C2A4F015400FED8CC /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		45C0A04D2A4F015400FED8CC /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +64,8 @@
 		4534E7DD2A19F6F200EE8CC9 = {
 			isa = PBXGroup;
 			children = (
+				45C0A04C2A4F015400FED8CC /* MainTableViewCell.swift */,
+				45C0A04D2A4F015400FED8CC /* MainTableViewCell.xib */,
 				4534E7E82A19F6F200EE8CC9 /* Umbrella */,
 				4534E7E72A19F6F200EE8CC9 /* Products */,
 				4534E8112A327D3700EE8CC9 /* Frameworks */,
@@ -84,6 +96,9 @@
 				4534E7FF2A1A063400EE8CC9 /* SunnyViewController.swift */,
 				4534E8072A1A070100EE8CC9 /* WeatherForecastViewController.swift */,
 				4534E8142A33DD8600EE8CC9 /* WeatherTableViewCell.swift */,
+				45C0A0462A4DDF2500FED8CC /* AlarmViewController.swift */,
+				45C0A0482A4DFA1D00FED8CC /* KerningdatelistLabel.swift */,
+				45C0A04A2A4DFBB200FED8CC /* KerningpoplistLable.swift */,
 			);
 			path = Umbrella;
 			sourceTree = "<group>";
@@ -162,6 +177,7 @@
 				4534E7F62A19F6F300EE8CC9 /* LaunchScreen.storyboard in Resources */,
 				4534E7F32A19F6F300EE8CC9 /* Assets.xcassets in Resources */,
 				4534E7F12A19F6F200EE8CC9 /* Main.storyboard in Resources */,
+				45C0A04F2A4F015400FED8CC /* MainTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,11 +188,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45C0A04E2A4F015400FED8CC /* MainTableViewCell.swift in Sources */,
+				45C0A0472A4DDF2500FED8CC /* AlarmViewController.swift in Sources */,
 				4534E7EE2A19F6F200EE8CC9 /* ViewController.swift in Sources */,
 				4534E8002A1A063400EE8CC9 /* SunnyViewController.swift in Sources */,
 				4534E8162A33DD8600EE8CC9 /* WeatherTableViewCell.swift in Sources */,
+				45C0A0492A4DFA1D00FED8CC /* KerningdatelistLabel.swift in Sources */,
 				4534E8082A1A070100EE8CC9 /* WeatherForecastViewController.swift in Sources */,
 				4534E7EA2A19F6F200EE8CC9 /* AppDelegate.swift in Sources */,
+				45C0A04B2A4DFBB200FED8CC /* KerningpoplistLable.swift in Sources */,
 				4534E7EC2A19F6F200EE8CC9 /* SceneDelegate.swift in Sources */,
 				4534E7FE2A1A058200EE8CC9 /* AddressViewController.swift in Sources */,
 			);
